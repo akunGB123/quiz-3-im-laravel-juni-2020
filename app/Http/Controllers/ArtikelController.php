@@ -19,8 +19,28 @@ class ArtikelController extends Controller
 
     public function store(Request $request){
         $data = $request->all();
-        $data['slug'] = preg_replace("/[^A-Za-z0-9]/", '-', strtolower($data['judul']));
         $new_artikel = ArtikelModel::save_artikel($data);
+        return redirect('/artikel');
+    }
+
+    public function show($id){
+        $artikel = ArtikelModel::find_by_id($id);
+        return view('artikel.show', compact('artikel'));
+    }
+
+    public function edit($id){
+        $artikel = ArtikelModel::find_by_id($id);
+        return view('artikel.edit',compact('artikel'));
+    }
+
+    public function update($id, Request $request){
+        //dd($request->all());
+        $artikel = ArtikelModel::update($id, $request->all());
+        return redirect('/artikel');
+    }
+
+    public function destroy($id){
+        $deleted = ArtikelModel::destroy($id);
         return redirect('/artikel');
     }
 }

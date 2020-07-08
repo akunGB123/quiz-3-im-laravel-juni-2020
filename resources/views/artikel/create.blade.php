@@ -15,6 +15,8 @@
             <label for="judul">Tags</label>
             <input type="text" name="tag" class="form-control" id="tag">
     </div>
+    <a class="btn btn-danger" href="/artikel">Back</a>
     <button type="submit" class="btn btn-primary mx-2">Submit</button>
 </form>
 @endsection
+
