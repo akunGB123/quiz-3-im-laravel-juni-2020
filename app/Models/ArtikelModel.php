@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 
-class ArtikelModel 
+class ArtikelModel
 {
     public static function get_artikel(){
         $artikel = DB::table('artikel')->where('id', $id)->get();
@@ -14,7 +14,10 @@ class ArtikelModel
     }
 
     public static function getAll_artikel(){
-        $artikel = DB::table('artikel')->get();
+        $artikel = DB::table('artikel')
+                        ->select('artikel.*', 'user.*')
+                        ->join('user', 'artikel.id_user', '=', 'user.id_user')
+                        ->get();
         return $artikel;
     }
 
@@ -45,9 +48,9 @@ class ArtikelModel
                     ]);
         return $artikel;
     }
-    
+
     public static function destroy($id){
-        
+
         $deleted = DB::table('artikel')
                         ->where('id_artikel',$id)
                         ->delete();

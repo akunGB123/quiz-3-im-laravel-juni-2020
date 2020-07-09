@@ -9,9 +9,11 @@
           <th style="">ISI</th>
           <th style="">SLUG</th>
           <th style="">TAG</th>
+          <th style="">AUTHOR</th>
+
           <th style="">ACTION</th>
 
-        </tr> 
+        </tr>
       </thead>
       <tbody>
         @foreach ($artikels as $data)
@@ -21,12 +23,13 @@
             <td>{{$data->isi}}</td>
             <td>{{$data->slug}}</td>
             <td>{{$data->tag}}</td>
-            <td> 
+            <td>{{$data->user->name}}</td>
+            <td>
               <a class="btn btn-info" href="/artikel/{{$data->id_artikel}}">Detail</a>
-            
+
             </td>
-            
-            
+
+
         </tr>
         @endforeach
       </tbody>
